@@ -1,0 +1,14 @@
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\bin\Debug\net8.0\ConsoleBanckApp.exe
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\bin\Debug\net8.0\ConsoleBanckApp.deps.json
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\bin\Debug\net8.0\ConsoleBanckApp.runtimeconfig.json
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\bin\Debug\net8.0\ConsoleBanckApp.dll
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\bin\Debug\net8.0\ConsoleBanckApp.pdb
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\obj\Debug\net8.0\ConsoleBanckApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\obj\Debug\net8.0\ConsoleBanckApp.AssemblyInfoInputs.cache
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\obj\Debug\net8.0\ConsoleBanckApp.AssemblyInfo.cs
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\obj\Debug\net8.0\ConsoleBanckApp.csproj.CoreCompileInputs.cache
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\obj\Debug\net8.0\ConsoleBanckApp.dll
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\obj\Debug\net8.0\refint\ConsoleBanckApp.dll
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\obj\Debug\net8.0\ConsoleBanckApp.pdb
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\obj\Debug\net8.0\ConsoleBanckApp.genruntimeconfig.cache
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\ConsoleBanckApp\obj\Debug\net8.0\ref\ConsoleBanckApp.dll
