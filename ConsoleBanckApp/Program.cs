@@ -149,37 +149,47 @@ class BankApplication
         Console.WriteLine("Enter Email: ");
         string email = Console.ReadLine();
 
-        string accountNumber = GenerateAccountNumber(); // Implement logic to generate unique account number
-        string pin = GeneratePin(); // Implement logic to generate unique PIN
+        string accountNumber = GenerateAccountNumber(firstName, lastName);
+        string pin = GeneratePin(accountNumber);
 
         Customer newCustomer = new Customer(firstName, lastName, email, accountNumber, pin, 0, 0); // Provide pin value
         customers.Add(newCustomer);
 
-        SaveCustomerData();
+        SaveCustomerData(newCustomer);
 
         Console.WriteLine("Customer account created successfully!");
         Console.WriteLine($"Account Number: {newCustomer.AccountNumber}");
         Console.WriteLine($"PIN: {newCustomer.Pin}");
     }
 
-    private static void SaveCustomerData()
+    private static void SaveCustomerData(Customer customer)
     {
-        string filePath = "C:\\Users\\jeffe\\source\\repos\\BankApplication\\customers.txt";
+        string filePath = $"C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\ConsoleBanckApp\\{customer.AccountNumber}.txt";
         File.Create(filePath).Close();
 
         using (StreamWriter writer = new StreamWriter(filePath, true))
         {
-            foreach (Customer customer in customers)
-            {
-                writer.WriteLine($"{customer.FirstName},{customer.LastName},{customer.Email},{customer.AccountNumber},{customer.Pin},{customer.CurrentAccount.Balance},{customer.SavingsAccount.Balance}");
-            }
+            writer.WriteLine(
+                $"{customer.FirstName}," +
+                $"{customer.LastName}," +
+                $"{customer.Email}," +
+                $"{customer.AccountNumber}," +
+                $"{customer.Pin}," +
+                $"{customer.CurrentAccount.Balance}," +
+                $"{customer.SavingsAccount.Balance}"
+            );
         }
     }
-    private static string GenerateAccountNumber()
+    private static string GenerateAccountNumber(string firstName, string lastName)
     {
-        // Implement logic to generate unique account number
-        // For example, you can use a combination of random numbers and letters
-        return "ABC123"; // Replace this with your implementation
+        string initials = $"{firstName[0]}{lastName[0]}";
+        int fullNameLength = firstName.Length + lastName.Length;
+
+        string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int firstInitialPosition = alphabet.IndexOf(initials[0]) + 1;
+        int secondInitialPosition = alphabet.IndexOf(initials[1]) + 1;
+
+        return $"{initials}-{fullNameLength}-{firstInitialPosition}-{secondInitialPosition}";
     }
 
     private static void DeleteCustomerAccount()
@@ -366,14 +376,11 @@ class BankApplication
         }
     }
 
-    private static string GeneratePin()
+    private static string GeneratePin(string accountNumber)
     {
-        Random random = new Random();
-        string pin = "";
-        for (int i = 0; i < 4; i++) // Generate a 4-digit PIN (modify as needed)
-        {
-            pin += random.Next(0, 10).ToString();
-        }
+        // Extract the last four digits of the account number (assuming PIN is 4 digits)
+        string pin = accountNumber.Substring(accountNumber.Length - 5).Replace("-", "");
+
         return pin;
     }
 
