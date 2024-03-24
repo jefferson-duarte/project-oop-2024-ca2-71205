@@ -150,6 +150,7 @@ class BankApplication
         string email = Console.ReadLine();
 
         string accountNumber = GenerateAccountNumber(firstName, lastName);
+        GenerateAccountFiles(accountNumber);
         string pin = GeneratePin(accountNumber);
 
         Customer newCustomer = new Customer(firstName, lastName, email, accountNumber, pin, 0, 0); // Provide pin value
@@ -182,7 +183,7 @@ class BankApplication
     }
     private static string GenerateAccountNumber(string firstName, string lastName)
     {
-        string initials = $"{firstName[0]}{lastName[0]}";
+        string initials = $"{firstName.ToUpper()[0]}{lastName.ToUpper()[0]}";
         int fullNameLength = firstName.Length + lastName.Length;
 
         string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -192,6 +193,20 @@ class BankApplication
         return $"{initials}-{fullNameLength}-{firstInitialPosition}-{secondInitialPosition}";
     }
 
+    private static void GenerateAccountFiles(string accountNumber)
+    {
+        string initials = accountNumber.Substring(0, 2);
+
+        // Generate file names with leading zeros for account number
+        string savingsFileName = 
+            $"C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\ConsoleBanckApp\\{accountNumber.PadLeft(8, '0')}-savings.txt";
+        string currentFileName = 
+            $"C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\ConsoleBanckApp\\{accountNumber.PadLeft(8, '0')}-current.txt";
+
+        // Create empty files for savings and current accounts (if they don't exist)
+        File.Create(savingsFileName).Dispose();
+        File.Create(currentFileName).Dispose();
+    }
     private static void DeleteCustomerAccount()
     {
         Console.WriteLine("Enter Account Number: ");
@@ -380,6 +395,8 @@ class BankApplication
     {
         // Extract the last four digits of the account number (assuming PIN is 4 digits)
         string pin = accountNumber.Substring(accountNumber.Length - 5).Replace("-", "");
+
+        pin = pin.PadLeft(4, '0');
 
         return pin;
     }
