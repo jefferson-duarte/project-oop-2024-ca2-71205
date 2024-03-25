@@ -506,3 +506,4 @@ C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\obj\Debug\net8.0\refint
 C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\obj\Debug\net8.0\BankApplicationCA2.pdb
 C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\obj\Debug\net8.0\BankApplicationCA2.genruntimeconfig.cache
 C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\obj\Debug\net8.0\ref\BankApplicationCA2.dll
+C:\Users\jeffe\Documents\.Projetos_C#\BankApplicationCA2\obj\Debug\net8.0\BankApplicationCA2.sourcelink.json

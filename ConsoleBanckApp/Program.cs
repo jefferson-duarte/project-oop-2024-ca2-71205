@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 class BankApplication
 {
@@ -153,7 +155,7 @@ class BankApplication
         GenerateAccountFiles(accountNumber);
         string pin = GeneratePin(accountNumber);
 
-        Customer newCustomer = new Customer(firstName, lastName, email, accountNumber, pin, 0, 0); // Provide pin value
+        Customer newCustomer = new Customer(firstName, lastName, email, accountNumber, pin, 0, 0);
         customers.Add(newCustomer);
 
         SaveCustomerData(newCustomer);
@@ -192,11 +194,9 @@ class BankApplication
 
         return $"{initials}-{fullNameLength}-{firstInitialPosition}-{secondInitialPosition}";
     }
-
-    private static void GenerateAccountFiles(string accountNumber)
+    //adicionei currentFileName e savingsFileName
+    private static (string currentFileName, string savingsFileName) GenerateAccountFiles(string accountNumber)
     {
-        string initials = accountNumber.Substring(0, 2);
-
         // Generate file names with leading zeros for account number
         string savingsFileName = 
             $"C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\ConsoleBanckApp\\{accountNumber.PadLeft(8, '0')}-savings.txt";
@@ -206,6 +206,8 @@ class BankApplication
         // Create empty files for savings and current accounts (if they don't exist)
         File.Create(savingsFileName).Dispose();
         File.Create(currentFileName).Dispose();
+
+        return (currentFileName, savingsFileName);
     }
     private static void DeleteCustomerAccount()
     {
@@ -288,7 +290,7 @@ class BankApplication
         Console.WriteLine("Enter Amount: ");
         decimal amount = GetDecimalInput("Enter Amount: ");
 
-        selectedAccount.Lodge(amount);
+        selectedAccount.Lodge(amount, customer);
 
         Console.WriteLine($"${amount} deposited successfully!");
         Console.WriteLine($"{selectedAccount.GetType().Name} Balance: {selectedAccount.Balance}");
@@ -424,16 +426,17 @@ class BankApplication
         }
     }
 
-    public class Account
+    public class Account()
     {
         public decimal Balance { get; set; }
 
-        public void Lodge(decimal amount)
+        public virtual void Lodge(decimal amount, Customer customer)
         {
             Balance += amount;
+            RecordTransaction("Lodgement", amount);
         }
 
-        public void Withdraw(decimal amount)
+        public virtual void Withdraw(decimal amount)
         {
             if (amount > Balance)
             {
@@ -441,15 +444,79 @@ class BankApplication
             }
 
             Balance -= amount;
+            RecordTransaction("Withdrawal", amount);
+        }
+
+        protected void RecordTransaction(string action, decimal amount)
+        {
+            // Aqui você pode escrever a lógica para registrar a transação
         }
     }
 
     public class CurrentAccount : Account
     {
+        public override void Lodge(decimal amount, Customer customer)
+        {
+            string fn = customer.FirstName;
+            string ln = customer.LastName;
+
+            base.Lodge(amount, customer);
+            string accountNumber = GenerateAccountNumber(fn, ln);
+            string currentFileName = GenerateAccountFiles(accountNumber).currentFileName;
+
+            RecordTransaction(
+                "Lodgement",
+                amount,
+                currentFileName
+            );
+        }
+
+        public override void Withdraw(decimal amount)
+        {
+            base.Withdraw(amount);
+
+            //RecordTransaction(
+            //    "Withdrawal",
+            //    amount,
+            //    $"C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\ConsoleBanckApp\\{currentFileName}-current.txt"
+            //);
+        }
+
+        private void RecordTransaction(string action, decimal amount, string fileName)
+        {
+            string transactionRecord = $"{DateTime.Now}\t{action}\t{amount}\t{Balance}";
+
+            using (StreamWriter writer = new StreamWriter(fileName, true))
+            {
+                writer.WriteLine(transactionRecord);
+            }
+        }
     }
 
     public class SavingsAccount : Account
     {
+        public override void Lodge(decimal amount, Customer customer)
+        {
+            base.Lodge(amount, customer);
+            RecordTransaction("Lodgement", amount, "js-8-10-19-savings.txt");
+        }
+
+        public override void Withdraw(decimal amount)
+        {
+            base.Withdraw(amount);
+            RecordTransaction("Withdrawal", amount, "js-8-10-19-savings.txt");
+        }
+
+        private void RecordTransaction(string action, decimal amount, string fileName)
+        {
+            string transactionRecord = $"{DateTime.Now}\t{action}\t{amount}\t{Balance}";
+            string userFileName = $"C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\ConsoleBanckApp\\{fileName}-savings.txt";
+
+            using (StreamWriter writer = new StreamWriter(userFileName, true))
+            {
+                writer.WriteLine(transactionRecord);
+            }
+        }
     }
 
     public class InsufficientFundsException : Exception

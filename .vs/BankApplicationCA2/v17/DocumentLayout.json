@@ -7,20 +7,16 @@
       "RelativeMoniker": "D:0:0:{A8869F0F-BA3D-4568-A2CB-24CCA3343759}|ConsoleBanckApp\\ConsoleBankApp.csproj|solutionrelative:consolebanckapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{03FB3DE8-4BC9-444C-84A5-941DDD796F26}|BankApplicationCA2.csproj|c:\\users\\jeffe\\documents\\.projetos_c#\\bankapplicationca2\\data\\bankapplicationca2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03FB3DE8-4BC9-444C-84A5-941DDD796F26}|BankApplicationCA2.csproj|solutionrelative:data\\bankapplicationca2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{03FB3DE8-4BC9-444C-84A5-941DDD796F26}|BankApplicationCA2.csproj|c:\\users\\jeffe\\documents\\.projetos_c#\\bankapplicationca2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{03FB3DE8-4BC9-444C-84A5-941DDD796F26}|BankApplicationCA2.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{03FB3DE8-4BC9-444C-84A5-941DDD796F26}|BankApplicationCA2.csproj|c:\\users\\jeffe\\documents\\.projetos_c#\\bankapplicationca2\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{03FB3DE8-4BC9-444C-84A5-941DDD796F26}|BankApplicationCA2.csproj|solutionrelative:controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03FB3DE8-4BC9-444C-84A5-941DDD796F26}|BankApplicationCA2.csproj|c:\\users\\jeffe\\documents\\.projetos_c#\\bankapplicationca2\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03FB3DE8-4BC9-444C-84A5-941DDD796F26}|BankApplicationCA2.csproj|solutionrelative:models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03FB3DE8-4BC9-444C-84A5-941DDD796F26}|BankApplicationCA2.csproj|c:\\users\\jeffe\\documents\\.projetos_c#\\bankapplicationca2\\data\\bankapplicationca2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03FB3DE8-4BC9-444C-84A5-941DDD796F26}|BankApplicationCA2.csproj|solutionrelative:data\\bankapplicationca2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -40,14 +36,14 @@
               "RelativeDocumentMoniker": "ConsoleBanckApp\\Program.cs",
               "ToolTip": "C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\ConsoleBanckApp\\Program.cs",
               "RelativeToolTip": "ConsoleBanckApp\\Program.cs",
-              "ViewState": "AQIAAHsBAAAAAAAAAAAWwI4BAAAiAAAA",
+              "ViewState": "AQIAAMwBAAAAAAAAAAAIwNMBAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-23T09:28:20.722Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -59,7 +55,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "BankApplicationCA2Context.cs",
               "DocumentMoniker": "C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\Data\\BankApplicationCA2Context.cs",
               "RelativeDocumentMoniker": "Data\\BankApplicationCA2Context.cs",
@@ -71,7 +67,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CustomersController.cs",
               "DocumentMoniker": "C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\Controllers\\CustomersController.cs",
               "RelativeDocumentMoniker": "Controllers\\CustomersController.cs",
@@ -80,18 +76,6 @@
               "ViewState": "AQIAAGcAAAAAAAAAAAAwwE8AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-14T14:13:34.871Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Customer.cs",
-              "DocumentMoniker": "C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\Models\\Customer.cs",
-              "RelativeDocumentMoniker": "Models\\Customer.cs",
-              "ToolTip": "C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\Models\\Customer.cs",
-              "RelativeToolTip": "Models\\Customer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-13T18:49:48.634Z"
             }
           ]
         }
