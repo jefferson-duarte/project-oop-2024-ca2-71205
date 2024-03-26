@@ -194,7 +194,6 @@ class BankApplication
 
         return $"{initials}-{fullNameLength}-{firstInitialPosition}-{secondInitialPosition}";
     }
-    //adicionei currentFileName e savingsFileName
     private static (string currentFileName, string savingsFileName) GenerateAccountFiles(string accountNumber)
     {
         // Generate file names with leading zeros for account number
@@ -203,9 +202,15 @@ class BankApplication
         string currentFileName = 
             $"C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\ConsoleBanckApp\\{accountNumber.PadLeft(8, '0')}-current.txt";
 
-        // Create empty files for savings and current accounts (if they don't exist)
-        File.Create(savingsFileName).Dispose();
-        File.Create(currentFileName).Dispose();
+        // Check if the files already exist
+        if (!File.Exists(savingsFileName))
+        {
+            File.Create(savingsFileName).Dispose();
+        }
+        if (!File.Exists(currentFileName))
+        {
+            File.Create(currentFileName).Dispose();
+        }
 
         return (currentFileName, savingsFileName);
     }
@@ -323,7 +328,7 @@ class BankApplication
 
         try
         {
-            selectedAccount.Withdraw(amount);
+            selectedAccount.Withdraw(amount, customer);
             Console.WriteLine($"${amount} withdrawn successfully!");
             Console.WriteLine($"{selectedAccount.GetType().Name} Balance: {selectedAccount.Balance}");
         }
@@ -436,7 +441,7 @@ class BankApplication
             RecordTransaction("Lodgement", amount);
         }
 
-        public virtual void Withdraw(decimal amount)
+        public virtual void Withdraw(decimal amount, Customer customer)
         {
             if (amount > Balance)
             {
@@ -449,7 +454,6 @@ class BankApplication
 
         protected void RecordTransaction(string action, decimal amount)
         {
-            // Aqui você pode escrever a lógica para registrar a transação
         }
     }
 
@@ -471,15 +475,20 @@ class BankApplication
             );
         }
 
-        public override void Withdraw(decimal amount)
+        public override void Withdraw(decimal amount, Customer customer)
         {
-            base.Withdraw(amount);
+            string fn = customer.FirstName;
+            string ln = customer.LastName;
 
-            //RecordTransaction(
-            //    "Withdrawal",
-            //    amount,
-            //    $"C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\ConsoleBanckApp\\{currentFileName}-current.txt"
-            //);
+            base.Withdraw(amount, customer);
+            string accountNumber = GenerateAccountNumber(fn, ln);
+            string currentFileName = GenerateAccountFiles(accountNumber).currentFileName;
+
+            RecordTransaction(
+                "Withdrawal",
+                amount,
+                currentFileName
+            );
         }
 
         private void RecordTransaction(string action, decimal amount, string fileName)
@@ -497,22 +506,41 @@ class BankApplication
     {
         public override void Lodge(decimal amount, Customer customer)
         {
+            string fn = customer.FirstName;
+            string ln = customer.LastName;
+
             base.Lodge(amount, customer);
-            RecordTransaction("Lodgement", amount, "js-8-10-19-savings.txt");
+            string accountNumber = GenerateAccountNumber(fn, ln);
+            string savingsFileName = GenerateAccountFiles(accountNumber).savingsFileName;
+
+            RecordTransaction(
+                "Lodgement",
+                amount,
+                savingsFileName
+            );
         }
 
-        public override void Withdraw(decimal amount)
+        public override void Withdraw(decimal amount, Customer customer)
         {
-            base.Withdraw(amount);
-            RecordTransaction("Withdrawal", amount, "js-8-10-19-savings.txt");
+            string fn = customer.FirstName;
+            string ln = customer.LastName;
+
+            base.Withdraw(amount, customer);
+            string accountNumber = GenerateAccountNumber(fn, ln);
+            string savingsFileName = GenerateAccountFiles(accountNumber).savingsFileName;
+
+            RecordTransaction(
+                "Withdrawal",
+                amount,
+                savingsFileName
+            );
         }
 
         private void RecordTransaction(string action, decimal amount, string fileName)
         {
             string transactionRecord = $"{DateTime.Now}\t{action}\t{amount}\t{Balance}";
-            string userFileName = $"C:\\Users\\jeffe\\Documents\\.Projetos_C#\\BankApplicationCA2\\ConsoleBanckApp\\{fileName}-savings.txt";
 
-            using (StreamWriter writer = new StreamWriter(userFileName, true))
+            using (StreamWriter writer = new StreamWriter(fileName, true))
             {
                 writer.WriteLine(transactionRecord);
             }
